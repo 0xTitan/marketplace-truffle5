@@ -1,0 +1,1 @@
+geth --rinkeby --syncmode light -http --http.api personal,eth,web3,net --allow-insecure-unlock --ipcpath "~/.ethereum/geth.ipc"
