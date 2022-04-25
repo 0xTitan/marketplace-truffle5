@@ -225,17 +225,17 @@ App = {
   },
 
   buyArticle: async () => {
-    event.preventDefault();
+    preventDefault();
     try {
-      const _articleId = $(event.target).data("id");
+      const _articleId = $(target).data("id");
       //retrieve price
-      var _price = parseFloat($(event.target).data("value"));
+      var articlePriceValue = parseFloat($(target).data("value"));
+      var _price = window.web3.utils.toWei(articlePriceValue, "ether");
       console.log(_price);
-      console.log(web3.utils.toBN(_price));
       const chainListInstance = await App.contracts.ChainList.deployed();
       const receiptBuy = await chainListInstance.buyArticle(_articleId, {
         from: App.account,
-        value: web3.utils.toWei(web3.utils.toBN(_price), "ether"),
+        value: _price,
         gas: 500000,
       });
     } catch (error) {
