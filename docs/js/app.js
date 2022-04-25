@@ -230,7 +230,10 @@ App = {
       const _articleId = $(event.target).data("id");
       //retrieve price
       var articlePriceValue = parseFloat($(event.target).data("value"));
-      var _price = window.web3.utils.toWei(articlePriceValue, "ether");
+      var _price = window.web3.utils.toWei(
+        articlePriceValue.toString(),
+        "ether"
+      );
       console.log(_price);
       const chainListInstance = await App.contracts.ChainList.deployed();
       const receiptBuy = await chainListInstance.buyArticle(_articleId, {
